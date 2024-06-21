@@ -20,7 +20,7 @@ function askForName() {
   // TODO 1.1b: Ask for candidate's name //
   candidateName = input.question("Enter you name: ");
 }
-
+//<I added this line with "//" just to push it again because I needed to make a change to push it after giving permission to action on github
 function askQuestion() {
   // TODO 1.2b: Ask candidate the question and assign the response as candidateAnswer //
 candidateAnswer = input.question(question);
