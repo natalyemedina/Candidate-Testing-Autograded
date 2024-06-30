@@ -25,6 +25,7 @@ let correctAnswers = [
   "Trajectory",
   "3"
 ];
+
 let candidateAnswers = [];
 
 
@@ -35,7 +36,7 @@ function askForName() {
 function askQuestion() {
   // TODO 1.2b: Ask candidate the question and assign the response as candidateAnswer //
   for (let i = 0; i < questions.length; i++) {
-   candidateAnswers[i] = input.question(questions[i]);
+    candidateAnswers[i] = input.question(questions[i]);
   }
 }
 
@@ -43,23 +44,34 @@ function askQuestion() {
 function gradeQuiz(candidateAnswers) {
 
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
+  console.log("Candidate Name: ", candidateName);
+  let grade = 0;
   for (let i = 0; i < questions.length; i++) {
-  if (correctAnswers[i].toLowerCase === candidateAnswers[i].toLowerCase) {
-  console.log(`${i+1}) ${questions[i]}`);
-  console.log(`Your Answer: ${candidateAnswers[i]}`);
-  console.log(`Correct Answer: ${correctAnswers[i]}`);
+    if (correctAnswers[i].toLowerCase() === candidateAnswers[i].toLowerCase()) {
+      grade = grade + 1;
+    }
+
+    console.log(`${i + 1}) ${questions[i]}`);
+    console.log(`Your Answer: ${candidateAnswers[i]}`);
+    console.log(`Correct Answer: ${correctAnswers[i]}\n`);
   }
+  let percentage = (grade / 5) * 100
+  let status;
+  if (percentage >= 80) {
+    status = "PASSED";
+  } else {
+    status = "FAILED";
+  } 
+  console.log(`>>> Overall Grade: ${grade * 20}% (${grade} of 5 responses correct) <<<`);
+  console.log(`>>> Status: ${status} <<<`);
+  return percentage;
 }
-  let grade;  //TODO 3.2 use this variable to calculate the candidates score.
 
-
-  return grade;
-}
 
 function runProgram() {
   askForName();
   // TODO 1.1c: Greet candidate using their name //
-   console.log("Hello, " + candidateName + "!");
+  console.log("Hello, " + candidateName + "!");
   askQuestion();
   gradeQuiz(this.candidateAnswers);
 }
@@ -76,3 +88,5 @@ module.exports = {
   gradeQuiz: gradeQuiz,
   runProgram: runProgram
 };
+
+
